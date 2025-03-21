@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Girasoles Mágicos</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #fae2bf;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+            font-family: Arial, sans-serif;
+        }
+
+        .Flowers__Love {
+            background-color: #f8c99d;
+            color: #000;
+            border: none;
+            padding: 12px 20px;
+            font-size: 18px;
+            font-family: 'Gloria Hallelujah', cursive;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+            z-index: 1000;
+            position: fixed; /* Fija el botón en la pantalla */
+            top: 50%; /* Lo coloca en el centro vertical */
+            left: 50%; /* Lo coloca en el centro horizontal */
+            transform: translate(-50%, -50%); /* Centra el botón exacto en el medio */
+        }
+
+        .Flowers__Love:hover {
+            background-color: #f4b183;
+        }
+
+        .flower {
+            position: absolute;
+            font-size: 50px;
+            animation: appear 0.5s ease-out, float 5s linear forwards;
+        }
+
+        @keyframes appear {
+            from {
+                transform: scale(0);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes float {
+            from {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            to {
+                transform: translateY(-200px);
+                opacity: 0;
+            }
+        }
+
+        .loveMessage {
+            font-size: 28px;
+            color: #d36d6d;
+            font-family: 'Gloria Hallelujah', cursive;
+            text-align: center;
+            display: none; /* Inicialmente oculto */
+            position: fixed; /* Lo fija en la pantalla */
+            bottom: 70px; /* Coloca la frase justo arriba del botón */
+            left: 50%; /* Centra la frase horizontalmente */
+            transform: translateX(-50%); /* Centra la frase exacta */
+            z-index: 999; /* Asegura que esté encima del botón */
+        }
+
+        /* Responsividad para pantallas pequeñas (móviles) */
+        @media (max-width: 600px) {
+            .Flowers__Love {
+                font-size: 16px; /* Reducir tamaño de texto del botón */
+                padding: 10px 18px; /* Reducir padding del botón */
+            }
+
+            .loveMessage {
+                font-size: 22px; /* Reducir tamaño de la frase en pantallas pequeñas */
+            }
+        }
+
+        /* Responsividad para pantallas más grandes (tabletas, computadoras) */
+        @media (min-width: 601px) {
+            .Flowers__Love {
+                font-size: 18px; /* Tamaño normal para pantallas grandes */
+                padding: 12px 20px; /* Padding estándar */
+            }
+
+            .loveMessage {
+                font-size: 28px; /* Tamaño de la frase para pantallas grandes */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="loveMessage">Te amo mucho, mi niña 💖</div>
+    <button class="Flowers__Love" onclick="generateFlower()">🌻 ¡Haz clic para ver girasoles! 🌻</button>
+
+    <script>
+        function generateFlower() {
+            // Mostrar la frase después del primer clic
+            const loveMessage = document.querySelector('.loveMessage');
+            loveMessage.style.display = 'block'; // Muestra la frase
+
+            const flower = document.createElement("div");
+            flower.classList.add("flower");
+            flower.innerHTML = "🌻"; // Emoji de girasol
+
+            // Posición aleatoria dentro de la pantalla
+            const x = Math.random() * (window.innerWidth - 50);
+            const y = Math.random() * (window.innerHeight - 150); // Evita que se genere en la parte inferior
+
+            flower.style.left = `${x}px`;
+            flower.style.top = `${y}px`;
+
+            document.body.appendChild(flower);
+
+            // Eliminar el girasol después de 5 segundos
+            setTimeout(() => {
+                flower.remove();
+            }, 5000);
+        }
+    </script>
+
+</body>
+</html>
